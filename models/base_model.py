@@ -18,4 +18,7 @@ class BaseModel:
 
     def to_dict(self):
         obj_dict = self.__dict__.copy()
-        obj_c
+        obj_dict['__class__'] = self.__class__.__name__
+        self.__dict__['created_at'] = (datetime.isoformat(
+                                    self.__dict__.get('created_at')))
+        self.__dict__['updated_at']
