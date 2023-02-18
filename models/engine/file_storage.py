@@ -25,8 +25,6 @@ class FileStorage:
         """  
         with open(self.__file_path, "w", encoding="utf-8") as f:
             json.dump({k: v.to_dict() for k, v in self.__objects.items()}, f)
-            #json.dump(self.__objects, f)
-
 
     def reload(self):
         """
