@@ -1,6 +1,10 @@
-#!/usr/bin/python3
-"""Document module"""
+##!/usr/bin/python3
+"""Documentation Module"""
+
 import json
+
+from models.base_model import BaseModel
+
 
 class FileStorage:
     __file_path = "file.json"
@@ -8,25 +12,29 @@ class FileStorage:
 
     def all(self):
         return self.__objects
-    
+
     def new(self, obj):
-        key = f"{obj.__class__.__name__}.{obj.id}"
-        self.__objects[key] = obj
+        """ sets in __objects the obj with key <obj class name>.id"""
+        key_obj = f"{obj.__class__.__name__}.{obj.id}"
+        self.__objects[key_obj] = obj
 
     def save(self):
-        objs_dict = {}
-        for key, obj in self.__objects.items():
-            objs_dict[key] = obj.to_dict()
-        with open(self.__file_path, mode ='w', encoding= "utf-8") as f:
-            json.dump(objs_dict, f)
+        """
+        this method opens file via file_path and serialize the python
+        objet in to a json one using the json.dump function
+        """  
+        with open(self.__file_path, "w", encoding="utf-8") as f:
+            json.dump({k: v.to_dict() for k, v in self.__objects.items()}, f)
+            #json.dump(self.__objects, f)
+
 
     def reload(self):
-              with open(FileStorage.__file_path, mode='r', encoding='utf-8') as f:
-                data = json.load(f)
-
-                from models.base_model import BaseModel
-                for key, value in data.items():
-                    class_name, obj_id = key.split('.')
-                    obj_dict = value
-                    obj = BaseModel(**obj_dict)
-                    FileStorage.__objects[key] = obj
+        """
+        This module decerialize the json string from file
+        in to a python object
+         """
+        try:
+            with open(self.__file_path, "r", encoding="utf-8") as f:
+                self.__objects = {k: BaseModel(**v) for k, v in json.load(f).items()} 
+        except Exception:
+            pass
