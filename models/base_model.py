@@ -11,9 +11,11 @@ class BaseModel:
     attributes/methods for other classes"""
     def __init__(self, *args, **kwargs):
         if kwargs:
-            for key, value in kwargs.items():
-                if key != '__class__':
-                    self.__dict__[key] = value
+            for keys, value in kwargs.items():
+                if keys in ['created_at', 'updated_at']:
+                    self.__dict__[keys] = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                elif keys != '__class__':
+                    self.__dict__[keys] = value
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -24,8 +26,9 @@ class BaseModel:
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
+        """updates the time of instance atribute"""
         self.updated_at = datetime.now()
-        models.storage.reload()
+        models.storage.save()
 
     def to_dict(self):
         obj_dict = self.__dict__.copy()

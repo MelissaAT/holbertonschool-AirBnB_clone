@@ -1,4 +1,4 @@
-##!/usr/bin/python3
+#!/usr/bin/python3
 """Documentation Module"""
 
 import json
@@ -25,8 +25,6 @@ class FileStorage:
         """  
         with open(self.__file_path, "w", encoding="utf-8") as f:
             json.dump({k: v.to_dict() for k, v in self.__objects.items()}, f)
-            #json.dump(self.__objects, f)
-
 
     def reload(self):
         """
@@ -38,3 +36,4 @@ class FileStorage:
                 self.__objects = {k: BaseModel(**v) for k, v in json.load(f).items()} 
         except Exception:
             pass
+
