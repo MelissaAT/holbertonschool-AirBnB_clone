@@ -37,5 +37,3 @@ class FileStorage:
         except Exception:
             pass
 
-    
-    
