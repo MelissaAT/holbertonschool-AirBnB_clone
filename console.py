@@ -1,7 +1,9 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Entry point of the commamd interpreter"""
 
 import cmd
+import json
+import models
 
 
 class HBNBCommand(cmd.Cmd):
@@ -22,5 +24,10 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing on empty line"""
         pass
 
+    def do_create(self, arg):
+        """Create a new instance of BaseModel"""
+        
+    
+    
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
