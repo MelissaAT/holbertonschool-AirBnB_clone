@@ -86,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             for obj in storage.all().values():
                 all_object_list = []
-                if arg == eval(obj).__name__:
+                if arg == obj.__class__.__name__:
                     all_object_list.append(str(obj))
             print(all_object_list)
         except Exception:
