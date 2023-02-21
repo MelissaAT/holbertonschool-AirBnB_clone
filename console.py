@@ -3,7 +3,9 @@
 
 import cmd
 import json
-import models
+
+from models import FileStorage, storage
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -36,7 +38,63 @@ class HBNBCommand(cmd.Cmd):
         except Exception:
             print('** class doesn\'t exist **')
 
-    
+        
+    def do_show(self, arg):
+        if not arg:
+            print("** class name missing **")
+            return
+        list_arg = arg.split()
+        try:
+            class_name = eval(list_arg[0]).__name__
+        except Exception:
+             print("** class doesn't exist **")
+             return
+        if len(list_arg) == 1:
+            print("** instance id missing **")
+            return
+        try:
+            class_name = f"{list_arg[0]}.{list_arg[1]}"
+            print(storage.all()[class_name])
+        except Exception:
+            print("** no instance found **")
+
+    def do_destroy(self, arg):
+        if not arg:
+            print("** class name missing **")
+            return
+        list_arg = arg.split()
+        try:
+            class_name = eval(list_arg[0]).__name__
+        except Exception:
+             print("** class doesn't exist **")
+             return
+        if len(list_arg) == 1:
+            print("** instance id missing **")
+            return
+        try:
+            class_name = f"{list_arg[0]}.{list_arg[1]}"
+            object = storage.all().get(class_name)
+            del(object)
+            storage.save()
+        except Exception:
+            print("** class doesn't exist **")
+
+    def do_all(self, arg):
+        """
+        Prints all string representation of all instances based or not on the class name.
+        """
+        try:
+            for obj in storage.all().values():
+                all_object_list = []
+                if arg == eval(obj).__name__:
+                    all_object_list.append(str(obj))
+            print(all_object_list)
+        except Exception:
+            print("** class doesn't exist **")
+
+
+
+
     
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
