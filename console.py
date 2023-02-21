@@ -38,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
         except Exception:
             print('** class doesn\'t exist **')
 
-        
+   
     def do_show(self, arg):
         if not arg:
             print("** class name missing **")
@@ -83,17 +83,58 @@ class HBNBCommand(cmd.Cmd):
         """
         Prints all string representation of all instances based or not on the class name.
         """
-        args = arg.split()
-        try:
+        if arg:
+            try:
+                arg == eval(arg).__name__
+            except Exception:
+                print("** class doesn't exist **")
+                return
+        if not arg:
             all_object_list = []
             for obj in storage.all().values():
-                if args[0] == obj.__class__.__name__:
+                all_object_list.append(str(obj))
+        else:
+            all_object_list = []
+            for obj in storage.all().values():
+                if arg == obj.__class__.__name__:
                     all_object_list.append(str(obj))
-            print(all_object_list)
-        except: Exception
+        print(all_object_list)
+
+    def do_update(self, arg):
+        """
+        update the object insatance by adding a new atribute and saving it to json
+        """
+        if not arg:
+            print("** class name missing **")
+            return
+        arguments = arg.split()
+        if arg:
+            try:
+                arguments[0] == eval(arguments[0]).__name__
+            except Exception:
+                print("** class doesn't exist **")
+                return
+        if len(arguments) == 0:
+            print("** instance id missing **")
+            return
+        try:
+            class_name = f"{arguments[0]}.{arguments[1]}"
+            obj_instance = storage.all()[class_name]
+        except Exception:
+            print("** no instance found **")
+            return
+        if len(arguments) == 1:
+            print("** attribute name missing **")
+            return
+        if len(arguments) == 2:
+            print("** value missing **")
+            return
+        else:
+            new_atribute = {str(arguments[2]): arguments[3]}
+            obj_instance.__dict__.update(new_atribute)
+            obj_instance.save()
+            return
 
 
-
-    
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
