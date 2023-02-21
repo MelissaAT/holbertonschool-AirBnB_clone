@@ -83,17 +83,15 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
-        class_name = f"{list_arg[0]}.{list_arg[1]}"
-        instance_obj = storage.all()[arg]
-        all_obj_list = []
+        elif arg:
+            _list = []
+            class_name = arg
+            for i in storage.all():
+                _list.append()
+                for _class in _list:
+                    object = storage.all().get(_class)
+            print(object)
+            return     
 
-        for i in storage.all():
-            all_obj_list.append(i) 
-        print(all_obj_list)
-        return     
-
-
-
-    
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
