@@ -6,6 +6,7 @@ import json
 
 from models import FileStorage, storage
 from models.base_model import BaseModel
+from models.user import User
 
 
 
