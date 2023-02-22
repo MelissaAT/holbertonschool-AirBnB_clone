@@ -5,20 +5,20 @@ import cmd
 import json
 
 from models import FileStorage, storage
+from models.amenity import Amenity
 from models.base_model import BaseModel
-from models.user import User
-from models.state import State
 from models.city import City
 from models.place import Place
-from models.amenity import Amenity
 from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
     """Command Interpreter class"""
 
     prompt = "(hbnb) "
-    classes = ["BaseModel, User, FileStorage, State, City, Amenity, Place, Review"]
+    
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
