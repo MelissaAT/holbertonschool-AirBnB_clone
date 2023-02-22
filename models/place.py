@@ -13,7 +13,6 @@ class Place(BaseModel):
     number_rooms = 0
     number_bathroom = 0
     max_guest = 0
-    max_guest = 0
     price_by_night = 0
     latitue = 0.0
     longitud = 0.0
