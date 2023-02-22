@@ -46,6 +46,8 @@ class HBNBCommand(cmd.Cmd):
             print('** class doesn\'t exist **')
 
     def do_show(self, arg):
+        """Prints the string representation of an
+        instance based on the class name and id"""
         if not arg:
             print("** class name missing **")
             return
