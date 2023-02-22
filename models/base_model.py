@@ -2,7 +2,6 @@
 """Documentation Module"""
 import uuid
 from datetime import datetime
-from models.user import User
 
 import models
 
