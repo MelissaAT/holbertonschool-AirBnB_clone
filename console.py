@@ -14,13 +14,11 @@ from models.amenity import Amenity
 from models.review import Review
 
 
-
 class HBNBCommand(cmd.Cmd):
     """Command Interpreter class"""
 
     prompt = "(hbnb) "
-    classes = [BaseModel, User, FileStorage,
-            State, City, Amenity, Place, Review]
+    classes = ["BaseModel, User, FileStorage, State, City, Amenity, Place, Review"]
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -47,7 +45,6 @@ class HBNBCommand(cmd.Cmd):
         except Exception:
             print('** class doesn\'t exist **')
 
-   
     def do_show(self, arg):
         if not arg:
             print("** class name missing **")
@@ -56,8 +53,8 @@ class HBNBCommand(cmd.Cmd):
         try:
             class_name = eval(list_arg[0]).__name__
         except Exception:
-             print("** class doesn't exist **")
-             return
+            print("** class doesn't exist **")
+            return
         if len(list_arg) == 1:
             print("** instance id missing **")
             return
@@ -75,22 +72,23 @@ class HBNBCommand(cmd.Cmd):
         try:
             class_name = eval(list_arg[0]).__name__
         except Exception:
-             print("** class doesn't exist **")
-             return
+            print("** class doesn't exist **")
+            return
         if len(list_arg) == 1:
             print("** instance id missing **")
             return
         try:
             class_name = f"{list_arg[0]}.{list_arg[1]}"
             object = storage.all().get(class_name)
-            del(object)
+            del (object)
             storage.save()
         except Exception:
             print("** class doesn't exist **")
 
     def do_all(self, arg):
         """
-        Prints all string representation of all instances based or not on the class name.
+        Prints all string representation of all
+        instances based or not on the class name.
         """
         if arg:
             try:
@@ -111,7 +109,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """
-        update the object insatance by adding a new atribute and saving it to json
+        update the object insatance by adding a
+        new atribute and saving it to json
         """
         if not arg:
             print("** class name missing **")

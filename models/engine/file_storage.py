@@ -28,7 +28,7 @@ class FileStorage:
         """
         this method opens file via file_path and serialize the python
         objet in to a json one using the json.dump function
-        """  
+        """ 
         with open(self.__file_path, "w", encoding="utf-8") as f:
             json.dump({k: v.to_dict() for k, v in self.__objects.items()}, f)
 
