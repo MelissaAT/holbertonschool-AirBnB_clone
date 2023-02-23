@@ -26,7 +26,9 @@ The command interpreter provides a set of commands to manage and interact with t
 **command_name model_name [arguments]**
 
 Here are some examples:
+
 To create a new User:
+
 **create User**
 
 To update an existin User:
