@@ -23,14 +23,15 @@ This will open the command prompt, and you can start typing commands.
 # How to Use the Command Interpreter
 The command interpreter provides a set of commands to manage and interact with the data models. The basic syntax for a command is as follows:
 
-**command_name model_name [arguments]**
+    command_name model_name [arguments
 
 Here are some examples:
 
 To create a new User:
 
-**create User**
+    create User
 
-To update an existin User:
+To update an existin User
 
-**update BaseModel 49faff9a-6318-451f-87b6-910505c55907 first_name "Betty"**
+    update BaseModel 49faff9a-6318-451f-87b6-910505c55907 first_name "Betty"
+
