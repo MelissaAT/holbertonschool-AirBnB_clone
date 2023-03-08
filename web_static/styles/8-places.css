@@ -64,21 +64,6 @@
     height: 65px;
 }
 
-.information .max_guest {
-    background-image: url("../images/icon_group.png") no-repeat top center;
-    width: 100px;
-}
-
-.information .number_rooms {
-    background-image: url("../images/icon_bed.png") no-repeat top center;
-    width: 100px;
-}
-
-.information .number_bathrooms {
-    background-image: url("../images/icon_bath.png") no-repeat top center;
-    width: 100px;
-}
-
 .user {
   margin-bottom: 1.5%;
 }
